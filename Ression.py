@@ -30,8 +30,7 @@ class CustomRegressionModel(torch.nn.Module):
         self.b1 = torch.randn(hidden_size, requires_grad=True)
         self.W2 = torch.randn(hidden_size, output_size, requires_grad=True)
         self.b2 = torch.randn(output_size, requires_grad=True)
-        # torch.nn.init.xavier_normal_(self.W1)
-        # torch.nn.init.xavier_normal_(self.W2)
+       
 
     def forward(self, x):
         hidden = torch.relu(x @ self.W1 + self.b1)
@@ -61,7 +60,7 @@ def train_model(model, X_train, y_train, batch_size, epochs, loss_fn, optimizer)
 
         avg_loss = np.mean(batch_losses)
         epoch_losses.append(avg_loss)
-        print(f"Epoch {epoch + 1}/{epochs}, Loss: {batch_losses:.4f}")
+        print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}")
     return epoch_losses
 
 def evaluate_model(model, X_test, y_test):
@@ -75,7 +74,7 @@ def evaluate_model(model, X_test, y_test):
         r2 = 1 - (ss_residual / ss_total)
     return mae.item(), mse.item(), r2.item()
 
-# Main 
+# Main script
 X_train, X_test, y_train, y_test = load_and_prepare_data()
 
 # Model Parameters
