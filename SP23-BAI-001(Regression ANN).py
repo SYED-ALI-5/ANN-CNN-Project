@@ -30,8 +30,7 @@ class CustomRegressionModel(torch.nn.Module):
         self.b1 = torch.randn(hidden_size, requires_grad=True)
         self.W2 = torch.randn(hidden_size, output_size, requires_grad=True)
         self.b2 = torch.randn(output_size, requires_grad=True)
-        # torch.nn.init.xavier_normal_(self.W1)
-        # torch.nn.init.xavier_normal_(self.W2)
+        
 
     def forward(self, x):
         hidden = torch.relu(x @ self.W1 + self.b1)
